@@ -25,7 +25,7 @@ public class Word {
         this.mAudioResourceId = mAudioResourceId;
     }
 
-    public String getmMiwokWord() {
+    public String getMiwokWord() {
         return mMiwokWord;
     }
 
@@ -33,7 +33,7 @@ public class Word {
         this.mMiwokWord = mMiwokWord;
     }
 
-    public String getmDefaultWord() {
+    public String getDefaultWord() {
         return mDefaultWord;
     }
 
@@ -41,9 +41,9 @@ public class Word {
         this.mDefaultWord = mDefaultWord;
     }
 
-    public int getmImageResourceId(){ return mImageResourceId; }
+    public int getImageResourceId(){ return mImageResourceId; }
 
     public boolean hasImage(){ return mImageResourceId != NO_IMAGE_PROVIDED; }
 
-    public int getmAudioResourceId(){return mAudioResourceId; }
+    public int getAudioResourceId(){return mAudioResourceId; }
 }

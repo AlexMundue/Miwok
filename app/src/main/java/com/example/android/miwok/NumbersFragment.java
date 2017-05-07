@@ -4,17 +4,22 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class NumbersActivity extends AppCompatActivity {
+/**
+ * Created by alexi on 06/05/2017.
+ */
 
-    //Media playaer object used to play the audio files
+public class NumbersFragment extends Fragment {
+    //Media player object used to play the audio files
     private MediaPlayer mMediaPlayer;
 
     //The listener used when audio is finished
@@ -51,12 +56,12 @@ public class NumbersActivity extends AppCompatActivity {
         }
     };
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.word_list, container, false);
 
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
@@ -71,9 +76,9 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(new Word("ten", "na’aacha", R.drawable.number_ten, R.raw.number_ten));
 
 
-        WordAdapter adapter = new WordAdapter(this, words, R.color.category_numbers);
+        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         listView.setAdapter(adapter);
 
@@ -85,16 +90,18 @@ public class NumbersActivity extends AppCompatActivity {
                 // Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getmAudioResourceId());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudioResourceId());
                     mMediaPlayer.start();
                 }
                 mMediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
+
+        return rootView;
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         //When the activity is stopped, release the media player resources  because we won't be playing any sounds
         releaseMediaPlayer();
@@ -121,4 +128,3 @@ public class NumbersActivity extends AppCompatActivity {
         mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
     }
 }
-

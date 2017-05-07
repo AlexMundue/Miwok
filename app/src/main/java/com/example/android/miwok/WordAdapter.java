@@ -41,14 +41,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Get the miwok translation from the current Word object and
         // set this text on the name TextView
-        miwokWordTextView.setText(currentWord.getmMiwokWord());
+        miwokWordTextView.setText(currentWord.getMiwokWord());
 
         // Find the TextView in the list_item.xml layout with the ID default_text_view
         TextView defaultWordTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
 
         // Get the english translation from the current Word object and
         // set this text on the number TextView
-        defaultWordTextView.setText(currentWord.getmDefaultWord());
+        defaultWordTextView.setText(currentWord.getDefaultWord());
 
         // Find the ImageView in the list_item.xml layout with the ID list_item_icon
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
@@ -56,7 +56,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the image resource ID from the current Word object and
         // set the image to image
         if(currentWord.hasImage()){
-            imageView.setImageResource(currentWord.getmImageResourceId());
+            imageView.setImageResource(currentWord.getImageResourceId());
             imageView.setVisibility(View.VISIBLE);
         }else {
             //If the word does not contain an image, then the imageView is removed from the view

@@ -24,7 +24,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Miwok"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -34,22 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:parentActivityName=".MainActivity"
-            android:name=".NumbersActivity"
-            android:label="@string/category_numbers"/>
-        <activity
-            android:parentActivityName=".MainActivity"
-            android:name=".FamilyActivity"
-            android:label="@string/category_family"/>
-        <activity
-            android:parentActivityName=".MainActivity"
-            android:name=".ColorsActivity"
-            android:label="@string/category_colors"/>
-        <activity
-            android:parentActivityName=".MainActivity"
-            android:name=".PhrasesActivity"
-            android:label="@string/category_phrases" />
     </application>
 
 </manifest>
